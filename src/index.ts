@@ -1,7 +1,8 @@
-import { relative, resolve } from 'path';
 import { loadEnv, type Plugin, type ResolvedConfig } from 'vite';
-import { ensureDirectoryExists, trimBasePath } from './utils';
+import MagicString from 'magic-string';
+import { relative, resolve } from 'path';
 import { cpSync, rmSync, writeFileSync } from 'fs';
+import { ensureDirectoryExists, trimBasePath } from './utils';
 
 export interface Options {
   output: string;
@@ -87,7 +88,17 @@ export function runtimeEnv(options: Options): Plugin {
       if (options.generateDts)  generateDts();
     },
     transform(code) {
-      return code.replaceAll('import.meta.env', `globalThis.${normalizedOptions.globalVariableName}`);
+      const magicString = new MagicString(code);
+      magicString.replaceAll(/import\.meta\.env\.([A-Z0-9_]+)/g, `globalThis.${normalizedOptions.globalVariableName}`);
+    
+      if (config.build.sourcemap) {
+        return {
+          code: magicString.toString(),
+          map: magicString.generateMap({ hires: true });
+        }
+      }
+    
+      return magicString.toString();
     },
     transformIndexHtml() {
       return [
