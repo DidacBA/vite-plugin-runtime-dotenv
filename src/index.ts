@@ -94,7 +94,7 @@ export function runtimeEnv(options: Options): Plugin {
       if (config.build.sourcemap) {
         return {
           code: magicString.toString(),
-          map: magicString.generateMap({ hires: true });
+          map: magicString.generateMap({ hires: true }),
         }
       }
     
