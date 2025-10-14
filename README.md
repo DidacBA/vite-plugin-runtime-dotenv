@@ -5,7 +5,7 @@ Build once, deploy anywhere with Vite.
 ## Install
 
 ```
-npm install --save-dev vite-plugin-runtime-env
+npm install --save-dev vite-plugin-runtime-dotenv
 ```
 
 ## Quick Setup
@@ -13,14 +13,14 @@ npm install --save-dev vite-plugin-runtime-env
 1. Install dependency to your project:
 
 ```
-npm i -D vite-plugin-runtime-env
+npm i -D vite-plugin-runtime-dotenv
 ```
 
-2. Add `vite-plugin-runtime-env` to your `vite.config` file:
+2. Add `vite-plugin-runtime-dotenv` to your `vite.config` file:
 
 ```ts
 import { defineConfig } from 'vite';
-import { runtimeEnv } from 'vite-plugin-runtime-env';
+import { runtimeEnv } from 'vite-plugin-runtime-dotenv';
 
 export default defineConfig({
   plugins: [
