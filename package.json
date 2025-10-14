@@ -25,6 +25,14 @@
     "build": "tsdown",
     "prepublishOnly": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DidacBA/vite-plugin-runtime-dotenv"
+  },
+  "homepage": "https://github.com/DidacBA/vite-plugin-runtime-dotenv",
+  "bugs": {
+    "url": "https://github.com/DidacBA/vite-plugin-runtime-doten/issues"
+  },
   "devDependencies": {
     "@types/node": "^24.7.2",
     "magic-string": "^0.30.19",
