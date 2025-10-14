@@ -1,4 +1,4 @@
-# vite-plugin-runtime-env
+# vite-plugin-runtime-dotenv
 
 Build once, deploy anywhere with Vite.
 
