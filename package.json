@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-runtime-env",
+  "name": "vite-plugin-runtime-dotenv",
   "version": "0.0.0",
   "type": "module",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "vite",
     "vite-plugin",
     "env",
+    "dotenv",
     "runtime-env"
   ],
   "files": [
