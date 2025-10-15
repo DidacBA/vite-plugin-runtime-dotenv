@@ -52,7 +52,7 @@ This will generate a single build, copy it into directories in dist named after 
       <td><code>runtimeEnv.js</code></td>
     </tr>
     <tr>
-      <td>serveMode</td>
+      <td>developmentMode</td>
       <td><code>string</code></td>
       <td>Mode to be used when using <code>vite serve</code></td>
       <td></td>
