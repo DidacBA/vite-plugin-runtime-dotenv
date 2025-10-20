@@ -75,5 +75,12 @@ This will generate a single build, copy it into directories in dist named after 
       <td></td>
       <td><code>false</code></td>
     </tr>
+    <tr>
+      <td>defaultEnvFilenameAliases</td>
+      <td><code>{ production?: string; development?: string }</code></td>
+      <td>Set aliases for vite default mode names when running 'serve' and 'build'</td>
+      <td></td>
+      <td><code>undefined</code></td>
+    </tr>
   </tbody>
 </table>
