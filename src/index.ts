@@ -6,12 +6,6 @@ import { ensureDirectoryExists, trimBasePath } from './utils';
 
 export interface Options {
   output: string;
-  /**
-   * Mode used during development with vite, and vite serve.
-   * A build wont' be generated for this mode.
-   * @default development
-   */
-  developmentMode?: string;
   modes: string[];
   globalVariableName?: string;
   generateDts?: boolean;
@@ -81,13 +75,12 @@ function generateFile(mode: string, options: NormalizedOptions) {
 
 export function runtimeEnv(options: Options): Plugin {
   return {
-    name: 'vite-plugin-runtime-env',
+    name: 'vite-plugin-runtime-dotenv',
     configResolved(resolvedConfig) {
       config = resolvedConfig;
       distPath = resolve(config.root, config.build.outDir),
       normalizedOptions = normalizeOptions(options);
-      const devMode = options.developmentMode ?? 'development';
-      [devMode, ...options.modes].forEach((mode) => {
+      [config.env.MODE, ...options.modes].forEach((mode) => {
         const env = loadEnv(mode, process.cwd());
         if (!envVars.has(mode)) {
           envVars.set(mode, env);
@@ -153,7 +146,7 @@ export function runtimeEnv(options: Options): Plugin {
 
       const listener = async (path: string) => {
         const relativePath = relative(config.root, path);
-        if (relativePath.startsWith('.env')) {
+        if (relativePath.startsWith('.env') && options.generateDts) {
           generateDts();
         }
       };
@@ -180,7 +173,7 @@ export function runtimeEnv(options: Options): Plugin {
       });
     },
     buildStart() {
-      generateDts();
+      if (options.generateDts) generateDts();
     }
   }
 }
