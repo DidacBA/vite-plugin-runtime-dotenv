@@ -25,7 +25,10 @@ import { runtimeEnv } from 'vite-plugin-runtime-dotenv';
 export default defineConfig({
   plugins: [
     runtimeEnv({
+      output: 'runtimeEnv.js',
+      globalVariableName: 'runtimeEnv',
       modes: ['qa', 'stg', 'prod'],
+      generateDts: true,
     }),
   ],
 });
@@ -50,13 +53,6 @@ This will generate a single build, copy it into directories in dist named after 
       <td><code>filename</code>. Path will be relative to output folder.</td>
       <td></td>
       <td><code>runtimeEnv.js</code></td>
-    </tr>
-    <tr>
-      <td>developmentMode</td>
-      <td><code>string</code></td>
-      <td>Mode to be used when using <code>vite serve</code></td>
-      <td></td>
-      <td><code>dev</code></td>
     </tr>
     <tr>
       <td>modes</td>
